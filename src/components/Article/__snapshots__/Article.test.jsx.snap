@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article Component renders article 1`] = `
+<DocumentFragment>
+  <li>
+    <p>
+      Race to the Outhouse
+    </p>
+    <p>
+      Will E. Makeit
+    </p>
+    <p>
+      a sad tale as old as time
+    </p>
+  </li>
+</DocumentFragment>
+`;
