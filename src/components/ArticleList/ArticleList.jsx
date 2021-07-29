@@ -3,17 +3,20 @@ import PropTypes from 'prop-types';
 import Article from '../Article/Article';
 
 const ArticleList = ({ articles }) => {
-    
-  const articleDetails = articles.map((article, i) => (
-    <>
-      <li key={Date.now() + i}>
-        <Article {...article}/>
-      </li>
-    </>
-  ));
-
-  return <li>{articleDetails}</li>;
-};
+  if(articles) {
+    const articleDetails = articles.map((article, i) => (
+      <>
+        <li key={Date.now() + i}>
+          <Article {...article}/>
+        </li>
+      </>
+    ));
+  
+    return <ul>{articleDetails}</ul>;
+  }
+  return <ul>AAAAAAAAHHHHHHHHH</ul>;
+}; 
+  
 
 ArticleList.propTypes = {
   articles: PropTypes.arrayOf(
