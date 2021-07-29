@@ -7,9 +7,8 @@ import { fetchArticles, fetchBySearch } from '../services/newsApi';
 export default class NewsSearch extends Component {
     state = {
       articles: [],
-      searchArticles: [],
       loading: true,
-      search: 'dog',
+      search: '',
     };
 
     async componentDidMount() {
@@ -17,28 +16,30 @@ export default class NewsSearch extends Component {
       this.setState({ articles, loading: false });
     }
 
-    async handleSearch({ search }) {
-      const searchArticles = await fetchBySearch(search);
-      this.setState({ search, searchArticles });
+    handleChange = ({ target }) => {
+      this.setState({ search: target.value });
     }
 
-    handleSubmit = (e) => {
-      e.prevent.Default();
-      this.handleSearch(this.state);
+    handleSubmit = async (e) => {
+      e.preventDefault();
+      this.setState({ loading: true });
+      const searchArticles = await fetchBySearch(this.state.search);
+      this.setState({ articles: searchArticles, loading: false });
+      
     }
  
     render() {
-      const { articles, searchArticles, loading, search } = this.state;
+      const { articles, loading, search } = this.state;
 
       if(loading) return <h1>Loading...</h1>;
-    //   if(search !== null) return <ArticleList articles={searchArticles}/>;
+      
       return (
         <>
         
           <Search
             search={search}
-            onChange={this.handleSubmit}
-            onSearch={this.handleSearch}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
           />
 
           <ArticleList articles={articles} />;

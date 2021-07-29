@@ -6,7 +6,9 @@ describe('News Search container', () => {
   it('renders newsSearch', async () => {
     render(<NewsSearch />);
 
-    const display = screen.getByTestId('display');
-    expect(display).toHave
+   
+    const Search = screen.getByPlaceholderText('Search');
+    fireEvent.change(Search, { target: { value: 'dog' } });
+    expect().toHaveTextContent('dog');
   });
 });

@@ -4,9 +4,9 @@ import Article from '../Article/Article';
 
 const ArticleList = ({ articles }) => {
     
-  const articleDetails = articles.map((article) => (
+  const articleDetails = articles.map((article, i) => (
     <>
-      <li key={article.title}>
+      <li key={Date.now() + i}>
         <Article {...article}/>
       </li>
     </>
@@ -20,9 +20,9 @@ ArticleList.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      description: PropTypes.string,
     })
-  ).isRequired,
+  )
 };
 
 export default ArticleList;
