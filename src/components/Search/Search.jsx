@@ -11,6 +11,7 @@ const Search = ({ text, onChange, onSearch }) => (
       value={text}
       onChange={onChange}
       onSearch={onSearch}
+      
     />
     <button>Search</button>
   </form>
