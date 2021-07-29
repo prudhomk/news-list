@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleList component renders articlelist 1`] = `
+<DocumentFragment>
+  <ul>
+    AAAAAAAAHHHHHHHHH
+  </ul>
+</DocumentFragment>
+`;
