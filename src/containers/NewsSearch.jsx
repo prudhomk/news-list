@@ -7,30 +7,38 @@ import { fetchArticles, fetchBySearch } from '../services/newsApi';
 export default class NewsSearch extends Component {
     state = {
       articles: [],
+      searchArticles: [],
       loading: true,
       search: 'dog',
     };
 
     async componentDidMount() {
       const articles = await fetchArticles();
-      console.log(articles);
       this.setState({ articles, loading: false });
     }
 
-    handleChange(e) {
-      this.setState({ search: e.target.value });
+    async handleSearch({ search }) {
+      const searchArticles = await fetchBySearch(search);
+      this.setState({ search, searchArticles });
     }
+
+    handleSubmit = (e) => {
+      e.prevent.Default();
+      this.handleSearch(this.state);
+    }
+ 
     render() {
-      const { articles, loading, search } = this.state;
+      const { articles, searchArticles, loading, search } = this.state;
 
       if(loading) return <h1>Loading...</h1>;
-
+    //   if(search !== null) return <ArticleList articles={searchArticles}/>;
       return (
         <>
+        
           <Search
             search={search}
-            onChange={this.handleChange}
-            onSubmit={this.handleSubmit}
+            onChange={this.handleSubmit}
+            onSearch={this.handleSearch}
           />
 
           <ArticleList articles={articles} />;

@@ -5,9 +5,11 @@ import Article from '../Article/Article';
 const ArticleList = ({ articles }) => {
     
   const articleDetails = articles.map((article) => (
-    <li key={article.title}>
-      <Article {...article}/>
-    </li>
+    <>
+      <li key={article.title}>
+        <Article {...article}/>
+      </li>
+    </>
   ));
 
   return <li>{articleDetails}</li>;
